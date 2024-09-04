@@ -1,0 +1,9 @@
+django==4.2
+python-dotenv
+django-apscheduler
+psycopg2-binary
+django-crispy-forms
+crispy-bootstrap4
+ipython
+pillow
+redis
