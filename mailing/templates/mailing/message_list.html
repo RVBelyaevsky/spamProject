@@ -1,0 +1,39 @@
+{% extends "mailing/base.html" %}
+{% block content %}
+<a class="p-2 btn btn-sm btn-outline-secondary" href="{% url 'mailing:message_create' %}">Создать сообшение</a>
+
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Сообщения</h1>
+      </div>
+    </div>
+  </section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+{% for message in object_list %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Название: <p>"{{ message.title }}"</p></h5>
+
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'mailing:message_detail' message.pk %}" role="button">Просмотр сообщения</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'mailing:message_update' message.pk %}" role="button">Редактировать сообщение</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'mailing:message_delete' message.pk %}" role="button">Удалить сообщение</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endfor %}
+
+      </div>
+    </div>
+  </div>
+{% endblock %}

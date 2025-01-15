@@ -1,0 +1,13 @@
+{% extends "mailing/base.html" %}
+{% block content %}
+<div class="container">
+   <div class="row text-center">
+       <div class="col-12">
+
+                   <h3>Клиент: {{object.first_name}} {{object.last_name}}</h3>
+                   <p>email: {{object.email}} </p>
+
+       </div>
+   </div>
+</div>
+{% endblock %}

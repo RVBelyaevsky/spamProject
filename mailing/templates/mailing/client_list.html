@@ -1,0 +1,43 @@
+{% extends "mailing/base.html" %}
+{% block content %}
+
+<a class="p-2 btn btn-sm btn-outline-secondary" href="{% url 'mailing:client_create' %}">Создать клиента</a>
+
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Клиенты</h1>
+      </div>
+    </div>
+  </section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+{% for client in object_list %}
+        <div class="col">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">{{ client.email }}</h5>
+              <h5 class="card-title">{{ client.first_name }}</h5>
+              <h5 class="card-title">{{ client.last_name }}</h5>
+
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'mailing:client_detail' client.pk %}" role="button">Просмотр данных клиента</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'mailing:client_update' client.pk %}" role="button">Редактировать данные клиента</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'mailing:client_delete' client.pk %}" role="button">Удалить клиента</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

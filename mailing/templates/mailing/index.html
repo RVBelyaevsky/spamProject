@@ -1,0 +1,14 @@
+{% extends 'mailing/base.html' %}
+
+{% block content %}
+
+<div class="mb-3">
+
+    <p>Количество рассылок: {{ count_mailing_items }}</p>
+    <p>Количество активных рассылок: {{ count_active_mailing_items }}</p>
+    <p>Количество уникальных клиентов: {{count_unic_clients}} </p>
+
+
+</div>
+
+{% endblock %}
