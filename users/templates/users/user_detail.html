@@ -1,0 +1,16 @@
+{% extends "mailing/base.html" %}
+
+{% block content %}
+<div class="row d-flex justify-content-center align-items-center text-center">
+
+    <h2>{{ user.first_name }} {{ user.last_name }}</h2><hr>
+    <h5 style="padding-top: 25px">Email: <span class="text-primary">{{ user.email }}</span></h5>
+    {% if user.phone %}
+    <h5 style="padding-top: 25px">Номер телефона: <span class="text-primary">{{user.phone}}</span></h5>
+    {% endif %}
+    {% if user.country %}
+    <h5 style="padding-top: 25px">Страна: <span class="text-primary">{{user.country}}</span></h5>
+    {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "mailing/base.html" %}
+{% block content %}
+    <div class="row text-center">
+        {% for object in object_list %}
+            {% if object != user and object.is_superuser == False and object.is_staff == False %}
+                <div class="col-4">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-header">
+                            <h4 class="my-0 font-weight-normal">{{ object.first_name }}</h4>
+                            <h4 class="my-0 font-weight-normal">{{ object.last_name }}</h4>
+                            <p class="my-0 font-weight-normal">Почта: {{object.email}}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}
