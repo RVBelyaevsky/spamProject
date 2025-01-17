@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 
 from config import settings
 from config.settings import EMAIL_HOST_USER
-from mailing.models import Client, Newsletter
+from mailing.models import Client, Newsletter, Log
 
 
 def get_uniq_clients_count():
@@ -31,9 +31,14 @@ def sending_mail():
     newsletters = Newsletter.objects.all().filter(is_active=True)
 
     for newsletter in newsletters:
-        if point_time >= newsletter.first_sending:
+        if newsletter.end_sending <= point_time:
+            newsletter.status = 'finished'
+            newsletter.save()
+            continue
+
+        if point_time > newsletter.first_sending:
             # send mail logic here
-            send_mail(
+            server_answer = send_mail(
                 newsletter.message.title,
                 newsletter.message.body,
                 EMAIL_HOST_USER,
@@ -41,3 +46,7 @@ def sending_mail():
                 fail_silently=False
             )
             print(f'Отправка завершена')
+
+            newsletter_log = Log.objects.create(last_try=point_time, status=True, newsletter=newsletter)
+            newsletter_log.server_answer = server_answer
+            print('log success')
