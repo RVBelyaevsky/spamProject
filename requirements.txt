@@ -7,3 +7,5 @@ crispy-bootstrap4
 ipython
 pillow
 redis
+gunicorn
+django-redis
